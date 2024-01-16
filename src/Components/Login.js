@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/Login.css'
 import { loginUrl } from '../spotify';
-import Logo from "../utils/logos/Spotify_Logo_RGB_Black.png";
+
 function Login() {
   return (
     <div className='login'>

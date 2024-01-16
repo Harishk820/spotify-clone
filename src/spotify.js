@@ -3,7 +3,7 @@
 export const authEndpoint = "https://accounts.spotify.com/authorize";
 
 const myclientId = "978717d30366403397bbe922294678d8";
-const clientId = "cff76213089a4e228206c8bf120d67cb";
+//const clientId = "cff76213089a4e228206c8bf120d67cb";
 
 
 // redirects to home page once authenticated/once logged in
@@ -18,7 +18,7 @@ const scopes = [
 ];
 
 // pulls the access token from the url
-export const getTokenFromResponse = () => {
+export const getTokenFromUrl = () => {
   return window.location.hash
     .substring(1)
     .split("&")
