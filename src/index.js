@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { DataLayer } from './utils/DataLayer';
-import reducer, { initialState } from './utils/reducer';
-
+import { initialState } from './utils/reducer';
+import reducer from './utils/reducer';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
