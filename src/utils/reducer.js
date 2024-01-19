@@ -32,11 +32,11 @@ const reducer = (state, action) => {
     //     spotify: action.spotify,
     //   };
 
-    // case "SET_PLAYLISTS":
-    //   return {
-    //     ...state,
-    //     playlists: action.playlists,
-    //   };
+    case "SET_PLAYLISTS":
+      return {
+        ...state,
+        playlists: action.playlists,
+      };
 
     default:
       return state;
