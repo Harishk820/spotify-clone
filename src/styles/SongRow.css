@@ -1,0 +1,52 @@
+/* .songRow_wrapper {
+  display: flex;
+  flex-direction: column;
+} */
+
+.songRow {
+  display: grid;
+  grid-template-columns: 0.3fr 3.1fr 2fr 0.1fr;
+  padding: 0.5rem 1rem;
+}
+/* .songRow {
+  margin-left: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  color: white;
+} */
+.songRow_imgAndASong {
+  display: flex;
+  direction: flex-col;
+  gap: 10px;
+}
+.songRow_albumAndDuration {
+  display: flex;
+  justify-content: space-between;
+}
+.songRow:hover {
+  cursor: pointer;
+  background-color: black;
+  opacity: 0.8;
+}
+
+.songRow__info {
+  margin-left: 0px;
+}
+
+.songRow__info > h1 {
+  font-size: 16px;
+}
+
+.songRow__info > p {
+  font-size: 14px;
+  margin-top: 3px;
+  color: gray;
+}
+
+.songRow__album {
+  height: 40px;
+  width: 40px;
+}

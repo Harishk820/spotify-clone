@@ -25,11 +25,16 @@
   justify-content: space-between;
 }
 .footer__right {
+  flex: 0.3;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   color: white;
-  flex: 0.3;
+}
+
+.slider {
+  color: #1ed15e !important;
 }
 
 .footer__albumLogo {

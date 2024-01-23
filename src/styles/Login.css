@@ -1,19 +1,37 @@
 .login {
-  display: grid;
+  /* display: grid;
   place-items: center;
   height: 100vh;
-  background-color: black;
+  background-color: black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: #1db954;
+  gap: 5rem;
 }
 
 .login > img {
-  width: 100%;
+  /* width: 100%; */
+  height: 20vh;
 }
 
 .login > a {
-  padding: 20px;
-  background-color: rgb(29, 173, 29);
+  /* padding: 20px;
+  background-color: #1db954;
   border-radius: 99px;
   font-weight: 700;
   color: white;
+  text-decoration: none; */
+
+  padding: 1rem 5rem;
+  border-radius: 5rem;
+  background-color: black;
+  color: #49f585;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
   text-decoration: none;
 }

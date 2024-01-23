@@ -31,12 +31,24 @@ function App() {
       spotify.setAccessToken(_token);
       // get user Details after authentication
       spotify.getMe().then((user) => {
-
         dispatch({
           type: 'SET_USER',
           user: user,
         });
       });
+
+      dispatch({
+        type: "SET_SPOTIFY",
+        spotify: spotify,
+      });
+
+      spotify.getPlaylist("37i9dQZEVXcKnQn3bFaAT7").then((response) =>
+        dispatch({
+          type: "SET_DISCOVER_WEEKLY",
+          discover_weekly: response,
+        })
+      );
+
     }
 
     spotify.getUserPlaylists().then((playlists) => {
@@ -48,7 +60,7 @@ function App() {
 
   }, [token, dispatch]);
 
-  // console.log("user from datalayer: ", user);
+  //console.log("user from datalayer: ", user);
 
   return (
     <div className='app'>
