@@ -15,12 +15,12 @@ import '../styles/Footer.css'
 
 function Footer({ spotify }) {
   const [{ token, item, playing }, dispatch] = useDataLayerValue();
-  console.log("playbackSatae item from Footer", item);
+  // console.log("playbackSatae item from Footer", item);
 
 
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((response) => {
-      console.log('current playbackState:', response);
+      // console.log('current playbackState:', response);
 
       dispatch({
         type: "SET_PLAYING",
@@ -32,7 +32,7 @@ function Footer({ spotify }) {
         item: response.item,
       });
     });
-  }, [token, spotify]);
+  }, [token, spotify, dispatch]);
 
   const handlePlayPause = () => {
     if (playing) {

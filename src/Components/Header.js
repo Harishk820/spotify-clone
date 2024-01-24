@@ -6,7 +6,7 @@ import { useDataLayerValue } from '../utils/DataLayer';
 
 function Header({ spotify }) {
 
-  const [{ user }, dispatch] = useDataLayerValue();
+  const [{ user }] = useDataLayerValue();
   //console.log(user);
   return (
     <div className='header'>
@@ -20,8 +20,8 @@ function Header({ spotify }) {
       </div>
       <div className='header__right'>
         <AccountCircleIcon fontSize='large' />
-        <h4>Harish Kumar</h4>
-        {/* <h4>{user?.display_name}</h4> */}
+        {/* <h4>Harish Kumar</h4> */}
+        <h4>{user?.display_name}</h4>
       </div>
     </div>
   )

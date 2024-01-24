@@ -10,9 +10,9 @@ import { AiFillClockCircle } from "react-icons/ai";
 
 // Discover weekly: 37i9dQZEVXcKnQn3bFaAT7
 function Body({ spotify }) {
-  const [{ discover_weekly, token }, dispatch] = useDataLayerValue();
+  const [{ discover_weekly, token }] = useDataLayerValue();
 
-  console.log('discover weekly: ', discover_weekly);
+  // console.log('discover weekly: ', discover_weekly);
 
   // const playPlaylist = (id) => {
   //   spotify.play({
@@ -85,22 +85,22 @@ function Body({ spotify }) {
 
 
 
-  const playSong = (id) => {
-    spotify.play({
-      uri: `spotify:track:${id}`,
-    }).then((res) => {
-      spotify.getMyCurrentPlayingTrack().then((response) => {
-        dispatch({
-          type: "SET_ITEM",
-          item: response.item,
-        });
-        dispatch({
-          type: "SET_PLAYING",
-          playing: true,
-        });
-      });
-    });
-  };
+  // const playSong = (id) => {
+  //   spotify.play({
+  //     uri: `spotify:track:${id}`,
+  //   }).then((res) => {
+  //     spotify.getMyCurrentPlayingTrack().then((response) => {
+  //       dispatch({
+  //         type: "SET_ITEM",
+  //         item: response.item,
+  //       });
+  //       dispatch({
+  //         type: "SET_PLAYING",
+  //         playing: true,
+  //       });
+  //     });
+  //   });
+  // };
 
 
 
