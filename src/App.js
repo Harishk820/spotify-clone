@@ -13,7 +13,7 @@ const spotify = new SpotifyWebApi();
 function App() {
 
   // datalayer.user= {user}
-  const [{ user, token }, dispatch] = useDataLayerValue();
+  const [{ token }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
     // Set token
