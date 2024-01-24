@@ -21,7 +21,7 @@ function App() {
     window.location.hash = "";
     let _token = hash.access_token;
 
-    //console.log("_token----", _token);
+    //console.log("_token --", _token);
     if (_token) {
       dispatch({
         type: 'SET_TOKEN',
@@ -50,17 +50,19 @@ function App() {
       );
 
     }
+    //   yaha error aa rha h
+    // spotify.getUserPlaylists(user).then((playlists) => {
+    //   dispatch({
+    //     type: "SET_PLAYLISTS",
+    //     playlists: playlists,
+    //   });
+    //   console.log('user playList aa gyi:', playlists);
+    // });
 
-    spotify.getUserPlaylists().then((playlists) => {
-      dispatch({
-        type: "SET_PLAYLISTS",
-        playlists: playlists,
-      });
-    });
 
   }, [token, dispatch]);
 
-  //console.log("user from datalayer: ", user);
+  // console.log("user from datalayer: ", user);
 
   return (
     <div className='app'>

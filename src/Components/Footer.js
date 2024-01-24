@@ -9,29 +9,30 @@ import RepeatIcon from '@mui/icons-material/Repeat';
 import VolumeDownIcon from '@mui/icons-material/VolumeDown';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import PlaylistPlayIcon from '@mui/icons-material/PlaylistPlay';
-import Grid from '@mui/material/Grid';
 import Slider from '@mui/material/Slider';
 import '../styles/Footer.css'
 
 
 function Footer({ spotify }) {
   const [{ token, item, playing }, dispatch] = useDataLayerValue();
+  console.log("playbackSatae item from Footer", item);
 
-  // useEffect(() => {
-  //   spotify.getMyCurrentPlaybackState().then((r) => {
-  //     console.log('current playbackState:', r);
 
-  //     dispatch({
-  //       type: "SET_PLAYING",
-  //       playing: r.is_playing,
-  //     });
+  useEffect(() => {
+    spotify.getMyCurrentPlaybackState().then((response) => {
+      console.log('current playbackState:', response);
 
-  //     dispatch({
-  //       type: "SET_ITEM",
-  //       item: r.item,
-  //     });
-  //   });
-  // }, [spotify]);
+      dispatch({
+        type: "SET_PLAYING",
+        playing: response.is_playing,
+      });
+
+      dispatch({
+        type: "SET_ITEM",
+        item: response.item,
+      });
+    });
+  }, [token, spotify]);
 
   const handlePlayPause = () => {
     if (playing) {
@@ -51,10 +52,10 @@ function Footer({ spotify }) {
 
   const skipNext = () => {
     spotify.skipToNext();
-    spotify.getMyCurrentPlayingTrack().then((r) => {
+    spotify.getMyCurrentPlayingTrack().then((response) => {
       dispatch({
         type: "SET_ITEM",
-        item: r.item,
+        item: response.item,
       });
       dispatch({
         type: "SET_PLAYING",
@@ -65,10 +66,10 @@ function Footer({ spotify }) {
 
   const skipPrevious = () => {
     spotify.skipToPrevious();
-    spotify.getMyCurrentPlayingTrack().then((r) => {
+    spotify.getMyCurrentPlayingTrack().then((response) => {
       dispatch({
         type: "SET_ITEM",
-        item: r.item,
+        item: response.item,
       });
       dispatch({
         type: "SET_PLAYING",
@@ -84,19 +85,44 @@ function Footer({ spotify }) {
       <div className='footer__left'>
         <img className='footer__albumLogo' src={item?.album.images[0].url}
           alt={item?.name}></img>
-        <div className='footer__songInfo'>
-          <h4>hello</h4>
-          <p>user</p>
-        </div>
+
+        {
+          item ? (
+            <div className="footer__songInfo">
+              <h4>{item.name}</h4>
+              <p>{item.artists.map((artist) => artist.name).join(", ")}</p>
+            </div>
+          ) : (
+            <div className="footer__songInfo">
+              <h4>No song is being played by this account</h4>
+              <p>. . .</p>
+            </div>
+          )
+        }
+
       </div>
       {/* footer center */}
       <div className='footer__center'>
         <ShuffleIcon className='footer__green' />
-        <SkipPreviousIcon className='footer__icon' />
-        <PlayCircleIcon fontSize='large' className='footer__icon' />
-        <SkipNextIcon className='footer__icon' />
+        <SkipPreviousIcon onClick={skipNext} className="footer__icon" />
+        {playing ? (
+          <PauseCircleOutlineIcon
+            onClick={handlePlayPause}
+            fontSize="large"
+            className="footer__icon"
+          />
+        ) : (
+          <PlayCircleIcon
+            onClick={handlePlayPause}
+            fontSize="large"
+            className="footer__icon"
+          />
+        )}
+        <SkipNextIcon onClick={skipPrevious} className="footer__icon" />
         <RepeatIcon className='footer__green' />
       </div>
+
+
       {/* footer right */}
       <div className='footer__right'>
         <PlaylistPlayIcon />

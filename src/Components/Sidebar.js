@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { useDataLayerValue } from '../utils/DataLayer';
 import '../styles/Sidebar.css'
 import SidebarOption from './SidebarOption';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
-import { useDataLayerValue } from '../utils/DataLayer';
 
-function Sidebar() {
+export default function Sidebar({ spotify }) {
+  const [{ token, playlists, user }, dispatch] = useDataLayerValue();
 
-  const [{ playlists }, dispatch] = useDataLayerValue();
-  console.log(playlists.name);
+  useEffect(() => {
+
+    spotify.getUserPlaylists(user).then((playlists) => {
+      dispatch({
+        type: "SET_PLAYLISTS",
+        playlists: playlists,
+      });
+      // console.log('user playList aa gyi:', playlists);
+    });
+
+  }, [token, dispatch]);
+
+  // const changeCurrentPlaylist = (selectedPlaylistId) => {
+  //   dispatch({ type: reducerCases.SET_PLAYLIST_ID, selectedPlaylistId });
+  // };
   return (
     <div className='sidebar'>
       <img className="sidebar__logo"
@@ -32,7 +46,5 @@ function Sidebar() {
       ))}
 
     </div>
-  )
+  );
 }
-
-export default Sidebar

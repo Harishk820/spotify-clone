@@ -1,6 +1,5 @@
 import React from 'react';
 import SongRow from './SongRow';
-import SS from './SS';
 import Header from './Header';
 import '../styles/Body.css';
 import { useDataLayerValue } from '../utils/DataLayer';
@@ -11,7 +10,7 @@ import { AiFillClockCircle } from "react-icons/ai";
 
 // Discover weekly: 37i9dQZEVXcKnQn3bFaAT7
 function Body({ spotify }) {
-  const [{ discover_weekly }, dispatch] = useDataLayerValue();
+  const [{ discover_weekly, token }, dispatch] = useDataLayerValue();
 
   console.log('discover weekly: ', discover_weekly);
 
@@ -32,9 +31,63 @@ function Body({ spotify }) {
   //   });
   // };
 
+
+
+
+  // Function to play a song by track ID
+  function playSongByTrackId(trackId) {
+    // Construct the Spotify API endpoint for getting track details
+    const trackEndpoint = `https://api.spotify.com/v1/tracks/${trackId}`;
+
+    // Fetch the track information using the access token
+    fetch(trackEndpoint, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((track) => {
+        if (track) {
+          // Use the Spotify SDK or another audio player to play the selected track
+          // Example using Spotify SDK (Web Playback SDK)
+          const player = new spotify.Player({
+            name: 'Web Playback SDK',
+            getOAuthToken: (cb) => {
+              cb(token);
+            },
+          });
+
+          // Connect to the player
+          player.connect().then((success) => {
+            if (success) {
+              // Play the selected track
+              player.play({ uris: [track.uri], })
+                .then(() => {
+                  console.log(`Playing ${track.name}.`);
+                })
+                .catch((error) => {
+                  console.error('Error playing the track:', error);
+                });
+            }
+          });
+        } else {
+          console.error('Track not found.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching track details:', error);
+      });
+  }
+
+  // playSongByTrackId(trackId);
+
+
+
+
+
   const playSong = (id) => {
     spotify.play({
-      uris: [`spotify:track:${id}`],
+      uri: `spotify:track:${id}`,
     }).then((res) => {
       spotify.getMyCurrentPlayingTrack().then((response) => {
         dispatch({
@@ -98,7 +151,7 @@ function Body({ spotify }) {
 
       {/* LIST OF SONGS */}
       {discover_weekly?.tracks.items.map((item, index) => (
-        <SongRow track={item.track} index={index} playSong={playSong} />
+        <SongRow track={item.track} playSongByTrackId={playSongByTrackId} index={index} />
       ))}
 
     </div>

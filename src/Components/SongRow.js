@@ -2,9 +2,7 @@ import React from 'react';
 import "../styles/SongRow.css";
 
 
-function SongRow({ track, playSong, index }) {
-  console.log('track:-', track);
-  console.log('track.id::', track.id);
+function SongRow({ track, playSongByTrackId, index }) {
 
   const ms = track.duration_ms;
   const msToMinutesAndSeconds = (ms) => {
@@ -13,13 +11,9 @@ function SongRow({ track, playSong, index }) {
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   };
 
-
-  //track.album.name
-  //track.duration_ms
-
   return (
     <div className='songRow_wrapper'>
-      <div className="songRow" onClick={() => playSong(track.id)}>
+      <div className="songRow" onClick={() => { }}>
         <div className="songRow_songNo">
           <span>{index + 1}</span>
         </div>

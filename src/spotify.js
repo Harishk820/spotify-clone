@@ -15,6 +15,8 @@ const scopes = [
   "user-read-playback-state",
   "user-top-read",
   "user-modify-playback-state",
+  "user-read-recently-played",
+
 ];
 
 // pulls the access token from the url

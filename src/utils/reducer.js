@@ -13,7 +13,7 @@ export const initialState = {
 // action-> type , payload
 const reducer = (state, action) => {
   // for debugging
-  console.log('action:->', action);
+  // console.log('action:->', action);
 
   switch (action.type) {
     case "SET_USER":

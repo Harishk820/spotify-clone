@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useDataLayerValue } from '../utils/DataLayer';
 
-function Header() {
+function Header({ spotify }) {
 
   const [{ user }, dispatch] = useDataLayerValue();
   //console.log(user);
