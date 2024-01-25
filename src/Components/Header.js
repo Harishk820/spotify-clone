@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Header.css';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useDataLayerValue } from '../utils/DataLayer';
+//import { useDataLayerValue } from '../utils/DataLayer';
 
 function Header({ spotify }) {
 
