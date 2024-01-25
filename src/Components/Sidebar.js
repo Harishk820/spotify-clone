@@ -16,14 +16,11 @@ export default function Sidebar({ spotify }) {
         type: "SET_PLAYLISTS",
         playlists: playlists,
       });
-      // console.log('user playList aa gyi:', playlists);
+      console.log('user playList aa gyi:', playlists);
     });
 
   }, [token, dispatch, user, spotify]);
 
-  // const changeCurrentPlaylist = (selectedPlaylistId) => {
-  //   dispatch({ type: reducerCases.SET_PLAYLIST_ID, selectedPlaylistId });
-  // };
   return (
     <div className='sidebar'>
       <img className="sidebar__logo"

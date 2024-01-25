@@ -8,7 +8,7 @@ const myclientId = "978717d30366403397bbe922294678d8";
 
 // redirects to home page once authenticated/once logged in
 const redirectUri = "https://clone-myspotify.netlify.app/";
-
+// const redirectUri = "http://localhost:3000/";
 const scopes = [
   "user-read-currently-playing",
   "user-read-recently-played",

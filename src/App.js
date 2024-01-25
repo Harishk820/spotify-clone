@@ -13,7 +13,7 @@ const spotify = new SpotifyWebApi();
 function App() {
 
   // datalayer.user= {user}
-  const [{ token }, dispatch] = useDataLayerValue();
+  const [{ token, user }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
     // Set token
@@ -49,17 +49,43 @@ function App() {
         })
       );
 
+
+
+
+      // ---------------_-------------------------
+
+      async function getDiscoverWeeklyPlaylist(token) {
+
+        spotify.setAccessToken(token);
+
+        try {
+          // Retrieve the user's playlists
+          const userPlaylists = await spotify.getUserPlaylists();
+
+          // Find the "Discover Weekly" playlist
+          const discoverWeeklyPlaylist = userPlaylists.items.find(playlist => playlist.name === 'Discover Weekly');
+
+          // Check if the "Discover Weekly" playlist was found
+          if (discoverWeeklyPlaylist) {
+            const playlistId = discoverWeeklyPlaylist.id;
+            console.log(`Discover Weekly Playlist ID: ${playlistId}`);
+            return playlistId;
+          } else {
+            console.log('Discover Weekly playlist not found.');
+            return null;
+          }
+        } catch (error) {
+          console.error(`Error: ${error.message}`);
+          return null;
+        }
+      }
+
+      // Replace 'YOUR_ACCESS_TOKEN' with the actual access token
+      const accessToken = 'YOUR_ACCESS_TOKEN';
+      getDiscoverWeeklyPlaylist(accessToken);
+
+
     }
-    //   yaha error aa rha h
-    // spotify.getUserPlaylists(user).then((playlists) => {
-    //   dispatch({
-    //     type: "SET_PLAYLISTS",
-    //     playlists: playlists,
-    //   });
-    //   console.log('user playList aa gyi:', playlists);
-    // });
-
-
   }, [token, dispatch]);
 
   // console.log("user from datalayer: ", user);
