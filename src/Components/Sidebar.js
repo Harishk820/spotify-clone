@@ -16,7 +16,7 @@ export default function Sidebar({ spotify }) {
         type: "SET_PLAYLISTS",
         playlists: playlists,
       });
-      console.log('user playList aa gyi:', playlists);
+      //  console.log('user playList aa gyi:', playlists);
     });
 
   }, [token, dispatch, user, spotify]);
